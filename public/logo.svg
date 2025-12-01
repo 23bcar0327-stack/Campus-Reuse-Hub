@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" fill="#10b981" opacity="0.1" stroke="#10b981" stroke-width="2"/>
+  
+  <!-- Recycle symbol (three arrows in a triangle) -->
+  <g transform="translate(100, 100)">
+    <!-- First arrow (top) -->
+    <path d="M 0,-50 L -15,-30 L -5,-30 Z" fill="#10b981"/>
+    <path d="M 0,-50 L -30,-30 L -30,-10 Q -15,-5 0,-10 Z" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round"/>
+    
+    <!-- Second arrow (bottom-left) -->
+    <path d="M -40,25 L -50,10 L -40,15 Z" fill="#10b981"/>
+    <path d="M -40,25 L -25,-5 L -10,-15 Q -5,-10 -15,0 Z" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round"/>
+    
+    <!-- Third arrow (bottom-right) -->
+    <path d="M 40,25 L 50,10 L 40,15 Z" fill="#10b981"/>
+    <path d="M 40,25 L 15,-5 L 10,-15 Q 5,-10 15,0 Z" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="100" y="180" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#10b981">Campus Reuse Hub</text>
+</svg>

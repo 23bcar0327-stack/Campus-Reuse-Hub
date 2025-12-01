@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Recycle, User, LogOut, Plus, Menu, X } from "lucide-react";
@@ -10,21 +10,58 @@ import type { User as AuthUser } from "@supabase/supabase-js";
 
 interface NavbarProps {
   user: AuthUser | null;
+  onAuthChange?: () => void;
 }
 
-export const Navbar = ({ user }: NavbarProps) => {
+export const Navbar = ({ user, onAuthChange }: NavbarProps) => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const isMobile = useIsMobile();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [authUser, setAuthUser] = useState<AuthUser | null>(user);
+
+  // Monitor auth changes to update user state
+  useEffect(() => {
+    setAuthUser(user);
+  }, [user]);
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
-    toast({
-      title: "Logged out successfully",
-    });
-    setIsMenuOpen(false);
-    navigate("/");
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        toast({
+          title: "Logout failed",
+          description: error.message,
+          variant: "destructive",
+        });
+        return;
+      }
+      
+      // Clear user state immediately
+      setAuthUser(null);
+      setIsMenuOpen(false);
+      
+      // Notify parent component
+      if (onAuthChange) {
+        onAuthChange();
+      }
+      
+      toast({
+        title: "Logged out successfully",
+      });
+      
+      // Navigate after a small delay to ensure state is updated
+      setTimeout(() => {
+        navigate("/");
+      }, 100);
+    } catch (error) {
+      console.error("Logout error:", error);
+      toast({
+        title: "An error occurred",
+        description: "Failed to logout. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   const handleNavigation = () => {
@@ -58,7 +95,7 @@ export const Navbar = ({ user }: NavbarProps) => {
           ) : (
             /* Desktop Navigation */
             <div className="flex items-center gap-2 sm:gap-4">
-              {user ? (
+              {authUser ? (
                 <>
                   <Button asChild variant="default" size="sm">
                     <Link to="/add-item" onClick={handleNavigation}>
@@ -94,7 +131,7 @@ export const Navbar = ({ user }: NavbarProps) => {
         {/* Mobile Menu */}
         {isMobile && isMenuOpen && (
           <div className="pb-4 space-y-2 border-t">
-            {user ? (
+            {authUser ? (
               <>
                 <Button asChild variant="default" className="w-full justify-start">
                   <Link to="/add-item" onClick={handleNavigation}>

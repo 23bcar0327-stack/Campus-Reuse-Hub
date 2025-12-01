@@ -25,6 +25,15 @@ export const Navbar = ({ user, onAuthChange }: NavbarProps) => {
     setAuthUser(user);
   }, [user]);
 
+  // Also listen to auth state changes directly for mobile reliability
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setAuthUser(session?.user ?? null);
+    });
+
+    return () => subscription?.unsubscribe();
+  }, []);
+
   const handleLogout = async () => {
     try {
       const { error } = await supabase.auth.signOut();

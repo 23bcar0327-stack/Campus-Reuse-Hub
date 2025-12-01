@@ -130,17 +130,18 @@ const ItemDetail = () => {
     <div className="min-h-screen bg-background">
       <Navbar user={user} />
       
-      <div className="container mx-auto px-4 py-4 sm:py-8">
+      <div className="w-full px-2 sm:px-4 md:px-6 py-4 sm:py-6 md:py-8">
         <Button 
           variant="ghost" 
+          size="sm"
           onClick={() => navigate("/")}
-          className="mb-4 sm:mb-6"
+          className="mb-3 sm:mb-4 md:mb-6"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Marketplace
         </Button>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
           {/* Image Section */}
           <div className="space-y-4">
             <div className="aspect-square rounded-lg overflow-hidden bg-muted">

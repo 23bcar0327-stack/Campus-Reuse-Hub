@@ -155,8 +155,8 @@ const AddItem = () => {
     <div className="min-h-screen bg-background">
       <Navbar user={user} />
       
-      <div className="container mx-auto px-4 py-6 sm:py-8 max-w-2xl">
-        <div className="mb-6 flex items-center gap-2">
+      <div className="w-full px-2 sm:px-4 md:px-6 py-4 sm:py-6 md:py-8 max-w-3xl mx-auto">
+        <div className="mb-4 sm:mb-6 flex items-center gap-2">
           <Button 
             variant="ghost" 
             size="icon"

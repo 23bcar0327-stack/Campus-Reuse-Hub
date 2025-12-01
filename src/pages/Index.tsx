@@ -136,14 +136,14 @@ const Index = () => {
       <section className="py-8 sm:py-12 md:py-16">
         <div className="container mx-auto px-4">
           {/* Search and Filter */}
-          <div className="mb-6 sm:mb-8 space-y-4 sm:space-y-6">
-            <div className="relative max-w-xl">
-              <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+            <div className="mb-4 sm:mb-6 md:mb-8 space-y-3 sm:space-y-4 md:space-y-6">
+             <div className="relative w-full max-w-2xl">
+               <Search className="absolute left-3 top-1/2 h-4 w-4 sm:h-5 sm:w-5 -translate-y-1/2 text-muted-foreground" />
               <Input
                 placeholder="Search items..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 text-sm sm:text-base"
+                 className="pl-9 sm:pl-10 text-xs sm:text-sm md:text-base h-9 sm:h-10"
               />
             </div>
 
@@ -155,7 +155,7 @@ const Index = () => {
           </div>
 
           {/* Items Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
+          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 xs:gap-3 sm:gap-4 md:gap-6">
             {filteredItems.map((item) => (
               <ItemCard
                 key={item.id}

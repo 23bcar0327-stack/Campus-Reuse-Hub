@@ -137,9 +137,9 @@ const Dashboard = () => {
     <div className="min-h-screen bg-background">
       <Navbar user={user} />
       
-      <div className="container mx-auto px-4 py-6 sm:py-8">
-        <div className="mb-6 sm:mb-8">
-          <h1 className="text-2xl sm:text-3xl font-bold mb-2">My Dashboard</h1>
+      <div className="w-full px-2 sm:px-4 md:px-6 py-4 sm:py-6 md:py-8">
+        <div className="mb-4 sm:mb-6 md:mb-8">
+          <h1 className="text-xl sm:text-3xl font-bold mb-1 sm:mb-2">My Dashboard</h1>
           <p className="text-sm sm:text-base text-muted-foreground">
             Welcome back, {profile?.full_name}!
           </p>

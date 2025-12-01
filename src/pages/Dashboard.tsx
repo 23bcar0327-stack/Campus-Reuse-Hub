@@ -139,13 +139,13 @@ const Dashboard = () => {
       
       <div className="container mx-auto px-4 py-6 sm:py-8">
         <div className="mb-6 sm:mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold mb-1 sm:mb-2">My Dashboard</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold mb-2">My Dashboard</h1>
           <p className="text-sm sm:text-base text-muted-foreground">
             Welcome back, {profile?.full_name}!
           </p>
         </div>
 
-        <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mb-6 sm:mb-8">
+        <div className="grid gap-3 sm:gap-4 md:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mb-6 sm:mb-8">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-xs sm:text-sm font-medium">Total Listings</CardTitle>
@@ -196,21 +196,21 @@ const Dashboard = () => {
                 </Button>
               </div>
             ) : (
-              <div className="space-y-3 sm:space-y-4">
+              <div className="space-y-2 sm:space-y-3">
                 {items.map((item) => (
                   <div
                     key={item.id}
-                    className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 p-3 sm:p-4 border rounded-lg hover:bg-muted/50 transition-colors"
+                    className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-4 p-2 sm:p-4 border rounded-lg hover:bg-muted/50 transition-colors"
                   >
-                    <div className="flex items-start sm:items-center gap-3 flex-1 min-w-0">
+                    <div className="flex items-start sm:items-center gap-2 sm:gap-3 flex-1 min-w-0 w-full sm:w-auto">
                       <img
                         src={item.images?.[0] || "/placeholder.svg"}
                         alt={item.title}
-                        className="w-12 h-12 sm:w-16 sm:h-16 object-cover rounded flex-shrink-0"
+                        className="w-10 h-10 sm:w-16 sm:h-16 object-cover rounded flex-shrink-0"
                       />
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-semibold text-sm sm:text-base truncate">{item.title}</h3>
-                        <div className="flex items-center gap-2 mt-1 flex-wrap">
+                        <h3 className="font-semibold text-xs sm:text-base truncate">{item.title}</h3>
+                        <div className="flex items-center gap-1 sm:gap-2 mt-1 flex-wrap">
                           <Badge variant="outline" className="text-xs">{item.category?.name}</Badge>
                           <Badge variant={item.status === 'available' ? 'default' : 'secondary'} className="text-xs">
                             {item.status}
@@ -226,11 +226,11 @@ const Dashboard = () => {
                       </div>
                     </div>
 
-                    <div className="flex gap-2 w-full sm:w-auto">
+                    <div className="flex gap-1 sm:gap-2 w-full sm:w-auto">
                       <Button
                         variant="outline"
                         size="icon"
-                        className="h-8 w-8 sm:h-10 sm:w-10"
+                        className="h-9 w-9 sm:h-10 sm:w-10 flex-1 sm:flex-none"
                         onClick={() => navigate(`/edit-item/${item.id}`)}
                       >
                         <Edit className="h-4 w-4" />
@@ -238,11 +238,11 @@ const Dashboard = () => {
 
                       <AlertDialog>
                         <AlertDialogTrigger asChild>
-                          <Button variant="destructive" size="icon" className="h-8 w-8 sm:h-10 sm:w-10">
+                          <Button variant="destructive" size="icon" className="h-9 w-9 sm:h-10 sm:w-10 flex-1 sm:flex-none">
                             <Trash2 className="h-4 w-4" />
                           </Button>
                         </AlertDialogTrigger>
-                        <AlertDialogContent>
+                        <AlertDialogContent className="w-[90vw] sm:w-auto">
                           <AlertDialogHeader>
                             <AlertDialogTitle>Delete item?</AlertDialogTitle>
                             <AlertDialogDescription>

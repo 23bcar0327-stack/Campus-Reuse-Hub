@@ -155,28 +155,44 @@ const AddItem = () => {
     <div className="min-h-screen bg-background">
       <Navbar user={user} />
       
-      <div className="container mx-auto px-4 py-8 max-w-2xl">
+      <div className="container mx-auto px-4 py-6 sm:py-8 max-w-2xl">
+        <div className="mb-6 flex items-center gap-2">
+          <Button 
+            variant="ghost" 
+            size="icon"
+            onClick={() => navigate("/dashboard")}
+            className="h-8 w-8 sm:h-10 sm:w-10"
+          >
+            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </Button>
+          <h1 className="text-2xl sm:text-3xl font-bold">List Your Item</h1>
+        </div>
+        
         <Card>
-          <CardHeader>
-            <CardTitle>List Your Item</CardTitle>
-            <CardDescription>Share what you no longer need with the campus community</CardDescription>
+          <CardHeader className="pb-3 sm:pb-6">
+            <CardTitle className="text-xl sm:text-2xl">Share Your Item</CardTitle>
+            <CardDescription className="text-xs sm:text-sm">
+              Share what you no longer need with the campus community
+            </CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               {/* Image Upload */}
               <div className="space-y-2">
-                <Label htmlFor="image">Item Image</Label>
+                <Label htmlFor="image" className="text-sm sm:text-base">Item Image</Label>
                 <div className="flex items-center gap-4">
                   <label 
                     htmlFor="image" 
-                    className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-lg cursor-pointer hover:bg-muted/50 transition-colors"
+                    className="flex flex-col items-center justify-center w-full h-40 sm:h-48 border-2 border-dashed rounded-lg cursor-pointer hover:bg-muted/50 transition-colors"
                   >
                     {imagePreview ? (
                       <img src={imagePreview} alt="Preview" className="w-full h-full object-cover rounded-lg" />
                     ) : (
-                      <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                        <Upload className="h-8 w-8 mb-2 text-muted-foreground" />
-                        <p className="text-sm text-muted-foreground">Click to upload image</p>
+                      <div className="flex flex-col items-center justify-center pt-5 pb-6 px-2 text-center">
+                        <Upload className="h-6 w-6 sm:h-8 sm:w-8 mb-2 text-muted-foreground" />
+                        <p className="text-xs sm:text-sm text-muted-foreground">Click to upload image</p>
                       </div>
                     )}
                     <Input
@@ -192,37 +208,38 @@ const AddItem = () => {
 
               {/* Title */}
               <div className="space-y-2">
-                <Label htmlFor="title">Title *</Label>
+                <Label htmlFor="title" className="text-sm sm:text-base">Title *</Label>
                 <Input
                   id="title"
                   placeholder="e.g., Calculus Textbook"
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  required
+                  className="text-sm sm:text-base"                  required
                 />
               </div>
 
               {/* Description */}
               <div className="space-y-2">
-                <Label htmlFor="description">Description *</Label>
+                <Label htmlFor="description" className="text-sm sm:text-base">Description *</Label>
                 <Textarea
                   id="description"
                   placeholder="Describe the item's condition, features, etc."
-                  rows={4}
+                  rows={3}
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                  className="text-sm sm:text-base"
                   required
                 />
               </div>
 
               {/* Category */}
               <div className="space-y-2">
-                <Label htmlFor="category">Category *</Label>
+                <Label htmlFor="category" className="text-sm sm:text-base">Category *</Label>
                 <Select
                   value={formData.category_id}
                   onValueChange={(value) => setFormData({ ...formData, category_id: value })}
                 >
-                  <SelectTrigger>
+                  <SelectTrigger className="text-sm sm:text-base">
                     <SelectValue placeholder="Select a category" />
                   </SelectTrigger>
                   <SelectContent>
@@ -236,11 +253,11 @@ const AddItem = () => {
               </div>
 
               {/* Donation Toggle */}
-              <div className="flex items-center justify-between rounded-lg border p-4">
-                <div className="space-y-0.5">
-                  <Label htmlFor="donation">Free Item (Donation)</Label>
-                  <p className="text-sm text-muted-foreground">
-                    Toggle this if you're giving the item away for free
+              <div className="flex items-center justify-between rounded-lg border p-3 sm:p-4">
+                <div className="space-y-0.5 flex-1">
+                  <Label htmlFor="donation" className="text-sm sm:text-base">Free Item (Donation)</Label>
+                  <p className="text-xs sm:text-sm text-muted-foreground">
+                    Toggle if giving away for free
                   </p>
                 </div>
                 <Switch
@@ -253,7 +270,7 @@ const AddItem = () => {
               {/* Price (only if not donation) */}
               {!formData.is_donation && (
                 <div className="space-y-2">
-                  <Label htmlFor="price">Price in INR (₹)</Label>
+                  <Label htmlFor="price" className="text-sm sm:text-base">Price in INR (₹)</Label>
                   <Input
                     id="price"
                     type="number"
@@ -262,15 +279,25 @@ const AddItem = () => {
                     placeholder="Enter price in ₹"
                     value={formData.price}
                     onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                    className="text-sm sm:text-base"
                   />
                 </div>
               )}
 
-              <div className="flex gap-4">
-                <Button type="button" variant="outline" onClick={() => navigate("/dashboard")} className="flex-1">
+              <div className="flex gap-2 sm:gap-4 pt-4">
+                <Button 
+                  type="button" 
+                  variant="outline" 
+                  onClick={() => navigate("/dashboard")} 
+                  className="flex-1 text-sm sm:text-base h-10 sm:h-11"
+                >
                   Cancel
                 </Button>
-                <Button type="submit" disabled={isLoading} className="flex-1">
+                <Button 
+                  type="submit" 
+                  disabled={isLoading} 
+                  className="flex-1 text-sm sm:text-base h-10 sm:h-11"
+                >
                   {isLoading ? "Creating..." : "List Item"}
                 </Button>
               </div>
